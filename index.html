@@ -173,7 +173,10 @@
     --max-num-batched-tokens 4224 \
     --speculative-config '{"method":"mtp","num_speculative_tokens":6}' \
     --compilation-config '{"cudagraph_mode":"FULL_DECODE_ONLY"}' \
+    --enable-auto-tool-choice \
+    --tool-call-parser qwen3_coder \
     --port 8000</pre>
+<p><em>Agent-workload note: the last two flags are what let tool-calling frameworks (TradingAgents, LangChain agent graphs, OpenAI-SDK tool use) hit this endpoint — without them every tool round-trip returns HTTP 400 <code>"auto" tool choice requires --enable-auto-tool-choice</code>. The parser for Swift/Qwen3.8-family checkpoints is <code>qwen3_coder</code>.</em></p>
 
 <h2>Five pitfalls that cost us hours (so they cost you zero)</h2>
 <ol class="ledger">
