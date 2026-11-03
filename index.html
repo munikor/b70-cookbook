@@ -140,6 +140,7 @@
 
 <h3>Prefill sweep</h3>
 <p>~1,300 tok/s prompt processing at 2K, degrading gracefully to ~1,134 tok/s at 47K — flat prefill curve. Fresh TTFT at 131K: 87 s; prefix-cached TTFT at 131K: <span class="win">2.4 s</span> (agentic chains share system/data prefixes — the cache is where chain latency collapses).</p>
+<div class="callout"><strong>Prefill A/B, negative result (measured):</strong> raising <code>--max-num-batched-tokens</code> 4,224 → 8,192 did <em>not</em> help: 2K depth −16% (1,301→1,098), 8–32K −1…5%, 64K +0.7%. Prefill here is W4A16 dequant-bound, not chunk-bound — the flag is not the lever, INT8/FP8 weight paths are. Keep 4,224. Full A/B: two BetterBench prefill runs, <code>swift-tp2-mtp6</code> vs <code>swift-tp2-mtp6-bt8192</code>.</div>
 
 <div class="callout"><strong>Honesty notes from the tool itself:</strong> (1) 65% of passes stopped at <code>max_tokens</code> mid-thinking — with reasoning ON, a pass measures the thinking phase; that's why the bake card measured thinking-off, and why category medians (not the 1%-low tails) are the comparable numbers. (2) p99 columns rest on 5–20 samples in quick mode — read as "worst observed," full-profile runs fix this. (3) The quick profile ran thinking-ON at temp 0.7 (real-chat conditions).</div>
 
