@@ -83,7 +83,7 @@
 <p>One card (TP1) running the quantized model with the drafter beats two cards running it without. Speculative decoding is worth more than a whole GPU. This is the headline.</p>
 
 <h2>Fleet probe battery — quick validation pass</h2>
-<p>Five checks, one pass, ~10 minutes on the serving lane: <strong>(1)</strong> decode ladder across generation lengths, <strong>(2)</strong> context ladder with fresh TTFT + prefix-warmed decode, comparable to published bake-card tables, <strong>(3)</strong> 8-stream concurrency aggregate, <strong>(4)</strong> exact-answer correctness battery (the spec-decode losslessness kill-switch), <strong>(5)</strong> MTP acceptance counters over the whole run. The following tables are that pass; full percentile-based BetterBench results follow below. Harness: <code>betterbench.py</code> in this repo — OpenAI-compatible endpoint, stdlib only.</p>
+<p>Five checks, one pass, ~10 minutes on the serving lane: <strong>(1)</strong> decode ladder across generation lengths, <strong>(2)</strong> context ladder with fresh TTFT + prefix-warmed decode, comparable to published bake-card tables, <strong>(3)</strong> 8-stream concurrency aggregate, <strong>(4)</strong> exact-answer correctness battery (the spec-decode losslessness kill-switch), <strong>(5)</strong> MTP acceptance counters over the whole run. The following tables are that pass; full percentile-based BetterBench results follow below. Harness: <code>probe-battery.py</code> in this repo — OpenAI-compatible endpoint, stdlib only.</p>
 
 <h3>Decode ladder — acceptance holds at length</h3>
 <table>
